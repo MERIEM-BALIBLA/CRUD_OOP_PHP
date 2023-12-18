@@ -1,0 +1,32 @@
+/*Le singleton est un modèle de conception (design pattern) qui garantit qu'une classe n'a qu'une seule instance et fournit un point d'accès global à cette instance. Cela signifie qu'une classe singleton ne peut avoir qu'un seul objet (instance) et fournit une méthode pour récupérer cette instance unique. Le singleton est souvent utilisé pour contrôler l'accès à une ressource partagée, telle qu'une base de données ou un fichier de configuration.*/
+
+
+/*cas d'utilisation d'une fonction simple
+class Database {
+    private $connection;
+    private function __construct() {
+        $servername = '127.0.0.1';
+         $username = 'root';
+         $password = '';
+         $dbname = 'task_db';
+
+         // Connexion à la base de données
+         try {
+             $this->connection = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+             echo "Success <br>";
+        } catch (PDOException $e) {
+             die("Connection failed: " . $e->getMessage());
+         }
+     }
+
+     public function getConnection() {
+         return $this->connection;
+     }
+ }
+
+// Exemple d'utilisation sans méthode statique
+ $database = new Database();
+ $connection = $database->getConnection();
+
+ // Vous pouvez maintenant utiliser $connection pour exécuter des requêtes SQL, etc.
